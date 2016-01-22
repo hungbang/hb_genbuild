@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generate GB Tool</title>
+	<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<label for="input-id" class="col-sm-2">Build Version:</label>
+			<input type="number" name="" id="buildversion" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+		</div>
+		<div class="row">
+			<label for="input-id" class="col-sm-2">Date Build:</label>
+			<input type="text" name="" id="date-build" class="form-control" value="" required="required" title="">
+		</div>
+		<div class="row">
+			<label for="input-id" class="col-sm-2">Tag Name:</label>
+			<input type="text" name="" id="tagname" class="form-control" value="" required="required" pattern="" title="">
+		</div>
+		
+		<div class="row" style="border: 1px solid black; padding: 10px 0px; margin-top: 10px; margin-bottom: 10px;" id="result">
+			
+		</div>
+		
+		<button type="button" class="btn btn-primary" id="gen">Generation</button>
+
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+    $("#date-build").click(function(){
+        $("#date-build").datepicker({
+        	dateFormat:"yy-mm-dd"
+        });
+        $("#date-build").datepicker("show");
+    });
+
+    $("#gen").click(function(){
+    	var preString = "scp coreitem@ardapl0039601.heb.com:/appl/coreitem/jenkins_builds/";
+    	var lastString = "/*.* coreitem@arcapl0028101.heb.com:/appl/coreitem/EAR/";
+    	var othersign = "-#";
+    	var buildversion = document.getElementById("buildversion");
+    	var datebuild = document.getElementById("date-build");
+    	var tagname = document.getElementById("tagname");
+    	var result = document.getElementById("result");
+    	var rs = preString.concat(datebuild.value,othersign,buildversion.value,lastString,tagname.value);
+    	//alert("----------"+rs);
+    	$("#result").text(rs);
+    });
+
+   
+});
+	</script>
+</body>
+</html>
